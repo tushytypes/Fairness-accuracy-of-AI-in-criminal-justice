@@ -1,0 +1,167 @@
+================================================================================
+THESIS EXPERIMENT REPORT
+Generated: 2026-03-03 10:44:31
+================================================================================
+
+--------------------------------------------------------------------------------
+DATASET: COMPAS
+Samples: 5278 | Features: 8 | Base rate: 47% | Base rate gap: 13%
+--------------------------------------------------------------------------------
+
+FULL MODEL RESULTS
+Model                       Accuracy    AUC-ROC  Precision     Recall         F1        SPD        EOD         DI        AOD
+----------------------------------------------------------------------------------------------------------------------------
+logistic_regression           0.6562     0.7110     0.6588     0.5594     0.6050    -0.2333    -0.2243     0.5280     0.2011
+random_forest                 0.6619     0.7164     0.6515     0.6056     0.6277    -0.2461    -0.2589     0.5421     0.2143
+gradient_boosting             0.6657     0.7115     0.6644     0.5855     0.6225    -0.2392    -0.2462     0.5327     0.2062
+
+SIMPLE BASELINE (Dressel & Farid)
+  Features: age, priors_count
+  Accuracy: 0.6610 | AUC: 0.7145 | Delta vs best: -0.47%
+
+FEATURE REDUCTION
+Method                       Optimal k   Max Accuracy
+-------------------------------------------------------
+mutual_information                   3         0.6657
+random_forest                        3         0.6752
+lasso                                3         0.6667
+
+ROAR ABLATION
+  logistic_regression:
+    Baseline: 65.62% | Mean drop: 0.52% | Max drop: 5.49% | Fragility: 12.50%
+    Critical features:
+      1. priors_count: -5.49% accuracy
+      2. age: -0.85% accuracy
+      3. days_b_screening_arrest: -0.76% accuracy
+  random_forest:
+    Baseline: 66.19% | Mean drop: 0.98% | Max drop: 7.01% | Fragility: 12.50%
+    Critical features:
+      1. priors_count: -7.01% accuracy
+      2. age: -1.61% accuracy
+      3. days_b_screening_arrest: -0.76% accuracy
+
+FAIRNESS
+  Base rate gap: 13.23%
+  SPD: FAIL (-0.23) | EOD: FAIL (-0.22) | DI: FAIL (0.53) | AOD: FAIL (0.20)
+
+CROSS-VALIDATION (5-fold)
+Model                         Acc (mean +/- std)     AUC (mean +/- std)
+------------------------------------------------------------------------
+logistic_regression            0.6826 +/- 0.0096      0.7305 +/- 0.0060
+random_forest                  0.6789 +/- 0.0102      0.7254 +/- 0.0087
+gradient_boosting              0.6739 +/- 0.0116      0.7236 +/- 0.0134
+
+--------------------------------------------------------------------------------
+DATASET: COMMUNITIES AND CRIME
+Samples: 1993 | Features: 82 | Base rate: 50% | Base rate gap: 33%
+--------------------------------------------------------------------------------
+
+FULL MODEL RESULTS
+Model                       Accuracy    AUC-ROC  Precision     Recall         F1        SPD        EOD         DI        AOD
+----------------------------------------------------------------------------------------------------------------------------
+logistic_regression           0.8496     0.9152     0.8840     0.8040     0.8421     0.3651     0.2364     2.3094     0.1835
+random_forest                 0.8371     0.9036     0.8418     0.8291     0.8354     0.3734     0.1919     2.1948     0.2013
+gradient_boosting             0.8296     0.8993     0.8579     0.7889     0.8220     0.3756     0.2333     2.3470     0.2076
+
+SIMPLE BASELINE (Dressel & Farid)
+  Features: PctPopUnderPov, PctKids2Par
+  Accuracy: 0.7544 | AUC: 0.8339 | Delta vs best: -9.52%
+
+FEATURE REDUCTION
+Method                       Optimal k   Max Accuracy
+-------------------------------------------------------
+mutual_information                  30         0.8371
+random_forest                       75         0.8496
+lasso                               75         0.8496
+
+ROAR ABLATION
+  logistic_regression:
+    Baseline: 84.96% | Mean drop: 0.30% | Max drop: 0.75% | Fragility: 0.00%
+    Critical features:
+      1. perCapInc: -0.75% accuracy
+      2. PctLess9thGrade: -0.75% accuracy
+      3. PctUnemployed: -0.75% accuracy
+  random_forest:
+    Baseline: 83.71% | Mean drop: 0.32% | Max drop: 1.25% | Fragility: 0.00%
+    Critical features:
+      1. blackPerCap: -1.25% accuracy
+      2. PctLess9thGrade: -1.25% accuracy
+      3. whitePerCap: -0.75% accuracy
+
+FAIRNESS
+  Base rate gap: 32.68%
+  SPD: FAIL (0.37) | EOD: FAIL (0.24) | DI: FAIL (2.31) | AOD: FAIL (0.18)
+
+CROSS-VALIDATION (5-fold)
+Model                         Acc (mean +/- std)     AUC (mean +/- std)
+------------------------------------------------------------------------
+logistic_regression            0.8364 +/- 0.0162      0.9122 +/- 0.0155
+random_forest                  0.8324 +/- 0.0174      0.9122 +/- 0.0135
+gradient_boosting              0.8289 +/- 0.0277      0.9072 +/- 0.0178
+
+--------------------------------------------------------------------------------
+DATASET: CHICAGO SSL
+Samples: 398440 | Features: 14 | Base rate: 43% | Base rate gap: 6%
+--------------------------------------------------------------------------------
+
+FULL MODEL RESULTS
+Model                       Accuracy    AUC-ROC  Precision     Recall         F1        SPD        EOD         DI        AOD
+----------------------------------------------------------------------------------------------------------------------------
+logistic_regression           0.9588     0.9894     0.9250     0.9851     0.9541    -0.0449     0.0053     0.9072     0.0063
+random_forest                 0.9583     0.9891     0.9223     0.9871     0.9536    -0.0446     0.0069     0.9083     0.0068
+gradient_boosting             0.9595     0.9901     0.9239     0.9881     0.9549    -0.0453     0.0047     0.9068     0.0060
+
+SIMPLE BASELINE (Dressel & Farid)
+  Features: age_curr_ord, age_at_arrest_ord
+  Accuracy: 0.9503 | AUC: 0.9748 | Delta vs best: -0.92%
+
+FEATURE REDUCTION
+Method                       Optimal k   Max Accuracy
+-------------------------------------------------------
+mutual_information                  10         0.9570
+random_forest                       10         0.9591
+lasso                               10         0.9587
+
+ROAR ABLATION
+  logistic_regression:
+    Baseline: 95.88% | Mean drop: 0.48% | Max drop: 5.60% | Fragility: 7.14%
+    Critical features:
+      1. age_curr_ord: -5.60% accuracy
+      2. age_at_arrest_ord: -0.39% accuracy
+      3. victim_battery: -0.22% accuracy
+  random_forest:
+    Baseline: 95.83% | Mean drop: 0.46% | Max drop: 5.81% | Fragility: 7.14%
+    Critical features:
+      1. age_curr_ord: -5.81% accuracy
+      2. age_at_arrest_ord: -0.38% accuracy
+      3. victim_battery: -0.15% accuracy
+
+FAIRNESS
+  Base rate gap: 5.75%
+  SPD: PASS (-0.04) | EOD: PASS (0.01) | DI: PASS (0.91) | AOD: PASS (0.01)
+
+CROSS-VALIDATION (5-fold)
+Model                         Acc (mean +/- std)     AUC (mean +/- std)
+------------------------------------------------------------------------
+logistic_regression            0.9597 +/- 0.0003      0.9897 +/- 0.0003
+random_forest                  0.9592 +/- 0.0005      0.9895 +/- 0.0003
+gradient_boosting              0.9604 +/- 0.0004      0.9904 +/- 0.0003
+
+================================================================================
+CROSS-DATASET COMPARISON
+================================================================================
+Dataset                Best Acc   Baseline      Delta  Fragility        Gap
+---------------------------------------------------------------------------
+COMPAS                   66.57%     66.10%      -0.47%     12.50%        13%
+Communities and Crime     84.96%     75.44%      -9.52%      0.00%        33%
+Chicago SSL              95.95%     95.03%      -0.92%      7.14%         6%
+
+================================================================================
+KEY FINDINGS
+================================================================================
+1. Dressel & Farid confirmed for COMPAS (baseline 66.10% vs best 66.57%)
+2. Communities benefits from complexity (+9.5%)
+3. priors_count is COMPAS single point of failure (-5.49%)
+4. Base rate gap predicts fairness violations
+
+================================================================================

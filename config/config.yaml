@@ -1,0 +1,155 @@
+# Thesis: Fairness & Accuracy of AI in Criminal Justice
+# Configuration file for experiments
+
+project:
+  name: "Fairness & Accuracy of AI in Criminal Justice"
+  author: "Martucci"
+  version: "0.2.0"
+
+# =============================================================================
+# DATASETS
+# =============================================================================
+datasets:
+  # 1. Recidivism Prediction - COMPAS
+  compas:
+    name: "ProPublica COMPAS"
+    url: "https://github.com/propublica/compas-analysis"
+    target: "two_year_recid"
+    protected_attributes: ["race"]
+    task_type: "classification"
+    description: "Broward County, FL defendants 2013-2014 with 2-year recidivism outcome"
+    baseline_features: ["age", "priors_count"]  # Dressel & Farid (2018)
+
+  # 2. Predictive Policing - Communities and Crime
+  communities_crime:
+    name: "UCI Communities and Crime"
+    url: "https://archive.ics.uci.edu/dataset/183/communities+and+crime"
+    target: "ViolentCrimesPerPop"
+    protected_attributes: ["racepctblack"]
+    task_type: "regression"  # Binarised at median for classification
+    binarize_threshold: "median"
+    description: "128 socio-economic features from 1994 US Census, Law Enforcement data"
+    baseline_features: ["PctPopUnderPov", "PctKids2Par"]
+
+  # 3. Victimization Prediction - Chicago SSL
+  strategic_subject_list:
+    name: "Chicago Strategic Subject List"
+    url: "https://data.cityofchicago.org/Public-Safety/Strategic-Subject-List-Historical/4aki-r3np"
+    target: "SSL_SCORE"
+    protected_attributes: ["RACE_CODE_CD"]
+    task_type: "classification"  # Binarised: SSL SCORE >= threshold
+    binarize_threshold: 300  # 300 -> ~43% positive (balanced); 400 -> ~1% (unusable)
+    description: "Chicago PD predictive scores for shooting involvement risk"
+    source: "Local CSV or Socrata API auto-download (sodapy)"
+    baseline_features: "auto"  # Top-2 Mutual Information features
+
+# =============================================================================
+# MODELS
+# =============================================================================
+models:
+  logistic_regression:
+    name: "Logistic Regression"
+    params:
+      penalty: "l2"
+      C: 1.0
+      max_iter: 1000
+      random_state: 42
+
+  random_forest:
+    name: "Random Forest"
+    params:
+      n_estimators: 100
+      max_depth: 10
+      random_state: 42
+
+  gradient_boosting:
+    name: "Gradient Boosting"
+    params:
+      n_estimators: 100
+      max_depth: 5
+      random_state: 42
+
+  # Simple baseline (Dressel & Farid 2018 style)
+  simple_baseline:
+    name: "2-Feature Baseline"
+    model: "logistic_regression"
+    description: "Logistic Regression on top-2 features (dataset-specific)"
+
+# =============================================================================
+# FAIRNESS METRICS (reported in experiment_report.txt)
+# =============================================================================
+fairness_metrics:
+  statistical_parity_difference:
+    name: "Statistical Parity Difference (SPD)"
+    formula: "P(Y_hat=1|A=0) - P(Y_hat=1|A=1)"
+    ideal: 0
+    threshold: 0.1
+
+  disparate_impact:
+    name: "Disparate Impact (DI)"
+    formula: "P(Y_hat=1|A=0) / P(Y_hat=1|A=1)"
+    ideal: 1.0
+    threshold: [0.8, 1.25]  # 80% rule
+
+  equal_opportunity_difference:
+    name: "Equal Opportunity Difference (EOD)"
+    formula: "TPR(A=0) - TPR(A=1)"
+    ideal: 0
+    threshold: 0.1
+
+  average_odds_difference:
+    name: "Average Odds Difference (AOD)"
+    formula: "0.5 * (|TPR_diff| + |FPR_diff|)"
+    ideal: 0
+    threshold: 0.1
+
+# =============================================================================
+# ML METRICS (reported in experiment_report.txt)
+# =============================================================================
+ml_metrics:
+  - "accuracy"
+  - "auc_roc"
+  - "precision"
+  - "recall"
+  - "f1"
+
+# =============================================================================
+# FEATURE SELECTION METHODS
+# =============================================================================
+feature_selection:
+  methods:
+    - name: "mutual_information"
+      type: "filter"
+
+    - name: "random_forest"
+      type: "embedded"
+
+    - name: "lasso"
+      type: "embedded"
+      params:
+        alpha_range: [0.001, 0.01, 0.1, 1.0]
+
+  # Feature subset sizes to evaluate
+  subset_sizes: [2, 3, 5, 7, 10, 15, 20, 30, 50, "all"]
+
+# =============================================================================
+# EXPERIMENT CONFIGURATION
+# =============================================================================
+experiments:
+  random_seed: 42
+  n_splits: 5  # K-fold cross-validation
+  test_size: 0.2
+
+  # Experiments run by run_experiments.py:
+  # 1. Full model evaluation (all models, all features)
+  # 2. Simple baseline (2-feature Dressel & Farid replication)
+  # 3. Progressive feature reduction (MI, RF, LASSO)
+  # 4. ROAR feature ablation (LR + RF, multi-model)
+  # 5. 5-fold cross-validation
+
+  # Output settings
+  output:
+    save_json: true      # {dataset}_results.json
+    save_csv: true       # {dataset}_full_models.csv, reduction CSVs
+    generate_report: true  # experiment_report.txt (unified TXT)
+    export_format: ["json", "csv", "txt"]

@@ -1,0 +1,173 @@
+{
+  "dataset": "COMPAS",
+  "timestamp": "2026-03-02T17:30:51.396607",
+  "n_features": 8,
+  "features": [
+    "age",
+    "priors_count",
+    "juv_fel_count",
+    "juv_misd_count",
+    "juv_other_count",
+    "c_charge_degree",
+    "sex",
+    "days_b_screening_arrest"
+  ],
+  "models": {
+    "logistic_regression": {
+      "baseline_accuracy": 0.6562,
+      "baseline_auc": 0.711,
+      "robustness_metrics": {
+        "mean_accuracy_drop": 0.0052,
+        "max_accuracy_drop": 0.0549,
+        "std_accuracy_drop": 0.0207,
+        "mean_robustness": 0.9861,
+        "min_robustness": 0.9163,
+        "fragility_index": 0.125
+      },
+      "ablation_results": [
+        {
+          "feature_removed": "priors_count",
+          "accuracy_drop": 0.0549,
+          "auc_drop": 0.0705,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6013,
+          "robustness_score": 0.9163
+        },
+        {
+          "feature_removed": "age",
+          "accuracy_drop": 0.0085,
+          "auc_drop": 0.0294,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6477,
+          "robustness_score": 0.987
+        },
+        {
+          "feature_removed": "days_b_screening_arrest",
+          "accuracy_drop": 0.0076,
+          "auc_drop": 0.0041,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6487,
+          "robustness_score": 0.9885
+        },
+        {
+          "feature_removed": "juv_misd_count",
+          "accuracy_drop": 0.0009,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6553,
+          "robustness_score": 0.9986
+        },
+        {
+          "feature_removed": "juv_other_count",
+          "accuracy_drop": 0.0009,
+          "auc_drop": -0.0007,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6553,
+          "robustness_score": 0.9986
+        },
+        {
+          "feature_removed": "juv_fel_count",
+          "accuracy_drop": -0.0009,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6572,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "sex",
+          "accuracy_drop": -0.0114,
+          "auc_drop": -0.0021,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6676,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "c_charge_degree",
+          "accuracy_drop": -0.0189,
+          "auc_drop": -0.0035,
+          "original_accuracy": 0.6562,
+          "ablated_accuracy": 0.6752,
+          "robustness_score": 1.0
+        }
+      ]
+    },
+    "random_forest": {
+      "baseline_accuracy": 0.6619,
+      "baseline_auc": 0.7164,
+      "robustness_metrics": {
+        "mean_accuracy_drop": 0.0098,
+        "max_accuracy_drop": 0.0701,
+        "std_accuracy_drop": 0.0237,
+        "mean_robustness": 0.9823,
+        "min_robustness": 0.8941,
+        "fragility_index": 0.125
+      },
+      "ablation_results": [
+        {
+          "feature_removed": "priors_count",
+          "accuracy_drop": 0.0701,
+          "auc_drop": 0.082,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.5919,
+          "robustness_score": 0.8941
+        },
+        {
+          "feature_removed": "age",
+          "accuracy_drop": 0.0161,
+          "auc_drop": 0.037,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6458,
+          "robustness_score": 0.9757
+        },
+        {
+          "feature_removed": "days_b_screening_arrest",
+          "accuracy_drop": 0.0076,
+          "auc_drop": 0.009,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6544,
+          "robustness_score": 0.9886
+        },
+        {
+          "feature_removed": "juv_misd_count",
+          "accuracy_drop": -0.0019,
+          "auc_drop": 0.0011,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6638,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "juv_other_count",
+          "accuracy_drop": -0.0019,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6638,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "juv_fel_count",
+          "accuracy_drop": -0.0038,
+          "auc_drop": 0.0011,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6657,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "c_charge_degree",
+          "accuracy_drop": -0.0038,
+          "auc_drop": 0.0047,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6657,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "sex",
+          "accuracy_drop": -0.0038,
+          "auc_drop": -0.0044,
+          "original_accuracy": 0.6619,
+          "ablated_accuracy": 0.6657,
+          "robustness_score": 1.0
+        }
+      ]
+    }
+  }
+}

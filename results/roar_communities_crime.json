@@ -1,0 +1,1431 @@
+{
+  "dataset": "Communities_Crime",
+  "timestamp": "2026-03-02T17:30:57.242046",
+  "n_features": 82,
+  "features": [
+    "population",
+    "householdsize",
+    "racepctblack",
+    "racePctWhite",
+    "racePctAsian",
+    "racePctHisp",
+    "agePct12t21",
+    "agePct12t29",
+    "agePct16t24",
+    "agePct65up",
+    "numbUrban",
+    "pctUrban",
+    "medIncome",
+    "pctWWage",
+    "pctWFarmSelf",
+    "pctWInvInc",
+    "pctWSocSec",
+    "pctWPubAsst",
+    "pctWRetire",
+    "medFamInc",
+    "perCapInc",
+    "whitePerCap",
+    "blackPerCap",
+    "indianPerCap",
+    "AssianPerCap",
+    "OtherPerCap",
+    "HispPerCap",
+    "NumUnderPov",
+    "PctPopUnderPov",
+    "PctLess9thGrade",
+    "PctNotHSGrad",
+    "PctBSorMore",
+    "PctUnemployed",
+    "PctEmploy",
+    "PctEmplManu",
+    "PctEmplProfServ",
+    "PctOccupManu",
+    "PctOccupMgmtProf",
+    "MalePctDivorce",
+    "MalePctNevMarr",
+    "FesalePctDiv",
+    "TotalPctDiv",
+    "PersPerFam",
+    "PctFam2Par",
+    "PctKids2Par",
+    "PctYoungKids2Par",
+    "PctTeen2Par",
+    "PctWorkMomYoungKids",
+    "PctWorkMom",
+    "NumIlleg",
+    "PctIlleg",
+    "NumImmig",
+    "PctImmigRecent",
+    "PctImmigRec5",
+    "PctImmigRec8",
+    "PctImmigRec10",
+    "PctRecentImmig",
+    "PctRecImmig5",
+    "PctRecImmig8",
+    "PctRecImmig10",
+    "PctSpeakEnglOnly",
+    "PctNotSpeakEnglWell",
+    "PctLargHouseFam",
+    "PctLargHouseOccup",
+    "PersPerOccupHous",
+    "PersPerOwnOccHous",
+    "PersPerRentOccHous",
+    "PctPersOwnOccup",
+    "PctPersDenseHous",
+    "PctHousLess3BR",
+    "MedNumBR",
+    "HousVacant",
+    "PctHousOccup",
+    "PctHousOwnOcc",
+    "PctVacantBoarded",
+    "PctVacMore6Mos",
+    "MedYrHousBuilt",
+    "PctHousNoPhone",
+    "PctSameState85",
+    "LessFamHh",
+    "PctUsePubTrans",
+    "LemasPctOfficDrugUn"
+  ],
+  "models": {
+    "logistic_regression": {
+      "baseline_accuracy": 0.8496,
+      "baseline_auc": 0.9152,
+      "robustness_metrics": {
+        "mean_accuracy_drop": 0.0033,
+        "max_accuracy_drop": 0.0125,
+        "std_accuracy_drop": 0.0031,
+        "mean_robustness": 0.9961,
+        "min_robustness": 0.9853,
+        "fragility_index": 0.0
+      },
+      "ablation_results": [
+        {
+          "feature_removed": "HispPerCap",
+          "accuracy_drop": 0.0125,
+          "auc_drop": 0.0021,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 0.9853
+        },
+        {
+          "feature_removed": "pctWPubAsst",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0007,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 0.9882
+        },
+        {
+          "feature_removed": "NumImmig",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 0.9882
+        },
+        {
+          "feature_removed": "PctHousLess3BR",
+          "accuracy_drop": 0.01,
+          "auc_drop": -0.0007,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 0.9882
+        },
+        {
+          "feature_removed": "PctVacantBoarded",
+          "accuracy_drop": 0.01,
+          "auc_drop": -0.0003,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 0.9882
+        },
+        {
+          "feature_removed": "pctUrban",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0008,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "perCapInc",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0004,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctLess9thGrade",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctNotHSGrad",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0017,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctUnemployed",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0018,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctEmplProfServ",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0009,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctRecentImmig",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctRecImmig10",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctPersOwnOccup",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "PctHousOccup",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0004,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 0.9912
+        },
+        {
+          "feature_removed": "householdsize",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "racePctAsian",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0003,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "agePct16t24",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "agePct65up",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "medIncome",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "pctWWage",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0008,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "pctWSocSec",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0015,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "PctOccupMgmtProf",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "PctRecImmig5",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0028,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "MedNumBR",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0008,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "PctHousOwnOcc",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "MedYrHousBuilt",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "PctHousNoPhone",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "PctUsePubTrans",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8446,
+          "robustness_score": 0.9941
+        },
+        {
+          "feature_removed": "racepctblack",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "racePctWhite",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "racePctHisp",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "agePct12t29",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "numbUrban",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "pctWRetire",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "blackPerCap",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "indianPerCap",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "OtherPerCap",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "NumUnderPov",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctEmploy",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctEmplManu",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "MalePctDivorce",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "MalePctNevMarr",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "FesalePctDiv",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "TotalPctDiv",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PersPerFam",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctFam2Par",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0023,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctKids2Par",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctTeen2Par",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0014,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctWorkMom",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctIlleg",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctImmigRecent",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctImmigRec5",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctImmigRec8",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0016,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctNotSpeakEnglWell",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PctLargHouseOccup",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PersPerOccupHous",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "PersPerRentOccHous",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0003,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "LessFamHh",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 0.9971
+        },
+        {
+          "feature_removed": "population",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "agePct12t21",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "pctWFarmSelf",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "pctWInvInc",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "medFamInc",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0007,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "whitePerCap",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctPopUnderPov",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctBSorMore",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctOccupManu",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctYoungKids2Par",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0009,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctWorkMomYoungKids",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0008,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "NumIlleg",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctImmigRec10",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctRecImmig8",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctSpeakEnglOnly",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctLargHouseFam",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PersPerOwnOccHous",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0001,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctPersDenseHous",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0011,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "HousVacant",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctVacMore6Mos",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0007,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctSameState85",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0003,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8496,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "AssianPerCap",
+          "accuracy_drop": -0.0025,
+          "auc_drop": -0.0002,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8521,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "LemasPctOfficDrugUn",
+          "accuracy_drop": -0.0025,
+          "auc_drop": 0.0005,
+          "original_accuracy": 0.8496,
+          "ablated_accuracy": 0.8521,
+          "robustness_score": 1.0
+        }
+      ]
+    },
+    "random_forest": {
+      "baseline_accuracy": 0.8371,
+      "baseline_auc": 0.9036,
+      "robustness_metrics": {
+        "mean_accuracy_drop": 0.0049,
+        "max_accuracy_drop": 0.0175,
+        "std_accuracy_drop": 0.0051,
+        "mean_robustness": 0.9937,
+        "min_robustness": 0.979,
+        "fragility_index": 0.0
+      },
+      "ablation_results": [
+        {
+          "feature_removed": "PctKids2Par",
+          "accuracy_drop": 0.0175,
+          "auc_drop": 0.0029,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8195,
+          "robustness_score": 0.979
+        },
+        {
+          "feature_removed": "racePctWhite",
+          "accuracy_drop": 0.015,
+          "auc_drop": -0.0007,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8221,
+          "robustness_score": 0.982
+        },
+        {
+          "feature_removed": "MedYrHousBuilt",
+          "accuracy_drop": 0.015,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8221,
+          "robustness_score": 0.982
+        },
+        {
+          "feature_removed": "householdsize",
+          "accuracy_drop": 0.0125,
+          "auc_drop": -0.0047,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "medIncome",
+          "accuracy_drop": 0.0125,
+          "auc_drop": 0.0019,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "blackPerCap",
+          "accuracy_drop": 0.0125,
+          "auc_drop": 0.0075,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "PctLess9thGrade",
+          "accuracy_drop": 0.0125,
+          "auc_drop": -0.0004,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "MedNumBR",
+          "accuracy_drop": 0.0125,
+          "auc_drop": -0.0008,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "PctVacMore6Mos",
+          "accuracy_drop": 0.0125,
+          "auc_drop": -0.0011,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "LessFamHh",
+          "accuracy_drop": 0.0125,
+          "auc_drop": 0.0034,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8246,
+          "robustness_score": 0.985
+        },
+        {
+          "feature_removed": "pctWWage",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "OtherPerCap",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0056,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "MalePctDivorce",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0011,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctTeen2Par",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0047,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctWorkMomYoungKids",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0068,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctWorkMom",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0062,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctHousOccup",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0025,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctHousOwnOcc",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctVacantBoarded",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "PctHousNoPhone",
+          "accuracy_drop": 0.01,
+          "auc_drop": 0.0027,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8271,
+          "robustness_score": 0.988
+        },
+        {
+          "feature_removed": "racepctblack",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0018,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "racePctHisp",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0011,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "pctUrban",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "pctWFarmSelf",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "whitePerCap",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PctBSorMore",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0051,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "TotalPctDiv",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0035,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PersPerFam",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PctYoungKids2Par",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0035,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PersPerOwnOccHous",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.0003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PersPerRentOccHous",
+          "accuracy_drop": 0.0075,
+          "auc_drop": 0.003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "PctUsePubTrans",
+          "accuracy_drop": 0.0075,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8296,
+          "robustness_score": 0.991
+        },
+        {
+          "feature_removed": "population",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0025,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "racePctAsian",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0027,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "NumUnderPov",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0004,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctNotHSGrad",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0052,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctFam2Par",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0012,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctImmigRec10",
+          "accuracy_drop": 0.005,
+          "auc_drop": -0.0,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctSpeakEnglOnly",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0048,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctNotSpeakEnglWell",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0015,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PersPerOccupHous",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctPersOwnOccup",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "PctPersDenseHous",
+          "accuracy_drop": 0.005,
+          "auc_drop": 0.0039,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8321,
+          "robustness_score": 0.994
+        },
+        {
+          "feature_removed": "agePct12t21",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "agePct65up",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0008,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "pctWSocSec",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0022,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "pctWPubAsst",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.001,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "perCapInc",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0002,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "HispPerCap",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctUnemployed",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0098,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctEmploy",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0018,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctOccupManu",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0042,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctOccupMgmtProf",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0009,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "MalePctNevMarr",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0005,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "NumIlleg",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0063,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "NumImmig",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0038,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctImmigRecent",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0024,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctRecImmig10",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0046,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctLargHouseFam",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctLargHouseOccup",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0024,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctHousLess3BR",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0054,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "HousVacant",
+          "accuracy_drop": 0.0025,
+          "auc_drop": -0.0022,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "PctSameState85",
+          "accuracy_drop": 0.0025,
+          "auc_drop": 0.0039,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8346,
+          "robustness_score": 0.997
+        },
+        {
+          "feature_removed": "agePct16t24",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "medFamInc",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0017,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "indianPerCap",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0075,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "AssianPerCap",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0079,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctPopUnderPov",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0019,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "FesalePctDiv",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctIlleg",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctImmigRec5",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0014,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctRecentImmig",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0044,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctRecImmig5",
+          "accuracy_drop": 0.0,
+          "auc_drop": 0.0012,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctRecImmig8",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0001,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "LemasPctOfficDrugUn",
+          "accuracy_drop": 0.0,
+          "auc_drop": -0.0008,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8371,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "agePct12t29",
+          "accuracy_drop": -0.0025,
+          "auc_drop": -0.0004,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "numbUrban",
+          "accuracy_drop": -0.0025,
+          "auc_drop": -0.0006,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "pctWRetire",
+          "accuracy_drop": -0.0025,
+          "auc_drop": 0.0004,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctEmplProfServ",
+          "accuracy_drop": -0.0025,
+          "auc_drop": 0.0012,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctImmigRec8",
+          "accuracy_drop": -0.0025,
+          "auc_drop": 0.0003,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8396,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "pctWInvInc",
+          "accuracy_drop": -0.005,
+          "auc_drop": -0.0025,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8421,
+          "robustness_score": 1.0
+        },
+        {
+          "feature_removed": "PctEmplManu",
+          "accuracy_drop": -0.01,
+          "auc_drop": 0.0025,
+          "original_accuracy": 0.8371,
+          "ablated_accuracy": 0.8471,
+          "robustness_score": 1.0
+        }
+      ]
+    }
+  }
+}
