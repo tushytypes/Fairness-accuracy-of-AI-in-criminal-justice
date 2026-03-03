@@ -1,0 +1,26 @@
+# Thesis: Fairness & Accuracy of AI in Criminal Justice
+# Python Dependencies
+
+# Data handling
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Machine Learning
+scikit-learn>=1.2.0
+
+# Data APIs (Socrata - for Chicago SSL auto-download)
+sodapy>=2.1.0
+
+# Visualization
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Configuration
+pyyaml>=6.0
+
+# Jupyter (optional, for notebooks)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Testing (optional)
+pytest>=7.0.0
