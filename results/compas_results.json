@@ -10,7 +10,7 @@
     "group_0_name": "Caucasian",
     "group_1_name": "African-American"
   },
-  "timestamp": "2026-03-03T09:33:26.844731",
+  "timestamp": "2026-03-06T13:04:27.688691",
   "full_model_evaluation": [
     {
       "model": "logistic_regression",
@@ -78,7 +78,7 @@
       "fairness_ppv_diff": -0.08159050445103866,
       "fairness_npv_diff": 0.029038112522686066,
       "fairness_treatment_equality": 0.9732620320855615,
-      "fairness_calibration_diff": 0.017660777226876125,
+      "fairness_calibration_diff": 0.017660777226876118,
       "group_0_n_samples": 429,
       "group_0_base_rate": 0.3962703962703963,
       "group_0_positive_rate": 0.2913752913752914,

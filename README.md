@@ -38,9 +38,6 @@ thesis_fairness_cj/
 │   ├── communities_crime_results.json
 │   ├── ssl_results.json           # Chicago SSL experiment output
 │   └── experiment_report.txt      # Unified TXT report (auto-generated)
-├── docs/
-│   ├── 01_introduction.md
-│   └── ROADMAP.md
 ├── requirements.txt
 └── README.md
 ```

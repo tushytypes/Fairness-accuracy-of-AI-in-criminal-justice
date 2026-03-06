@@ -10,7 +10,7 @@
     "group_0_name": "Low % Black",
     "group_1_name": "High % Black"
   },
-  "timestamp": "2026-03-03T09:33:41.433778",
+  "timestamp": "2026-03-06T13:04:40.255452",
   "full_model_evaluation": [
     {
       "model": "logistic_regression",

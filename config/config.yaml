@@ -39,7 +39,11 @@ datasets:
     protected_attributes: ["RACE_CODE_CD"]
     task_type: "classification"  # Binarised: SSL SCORE >= threshold
     binarize_threshold: 300  # 300 -> ~43% positive (balanced); 400 -> ~1% (unusable)
-    description: "Chicago PD predictive scores for shooting involvement risk"
+    description: >
+      Chicago PD predictive scores for shooting involvement risk.
+      7 independent features only (age, weapon/drug/arrest flags, sex, recency).
+      The 7 PREDICTOR RAT sub-scores that compose SSL SCORE are excluded
+      to avoid structural data leakage.
     source: "Local CSV or Socrata API auto-download (sodapy)"
     baseline_features: "auto"  # Top-2 Mutual Information features
 

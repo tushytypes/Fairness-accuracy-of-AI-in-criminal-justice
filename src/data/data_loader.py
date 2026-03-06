@@ -228,7 +228,7 @@ _SSL_DEFAULT_PATH = os.path.join(
 _SSL_SOCRATA_DOMAIN = 'data.cityofchicago.org'
 _SSL_SOCRATA_DATASET = '4aki-r3np'
 
-# Age-range ordinal mapping used for AGE GROUP / AGE CURR / PREDICTOR RAT AGE
+# Age-range ordinal mapping used for age_curr / predictor_rat_age_at_latest_arrest
 _AGE_RANGE_MAP = {
     'less than 20': 0,
     '20-30': 1,
@@ -253,12 +253,8 @@ def load_ssl(data_path: Optional[str] = None, test_size: float = 0.2,
     3. **Automatic download** via Socrata Open Data API (dataset 4aki-r3np).
        Requires ``sodapy`` (``pip install sodapy``).
 
-    Features kept (14 total after encoding)
+    Features kept (7 total after encoding)
     ----------------------------------------
-    Numeric predictors (7):
-        victim_shooting, victim_battery, arrests_violent, gang_affiliation,
-        narcotic_arrests, trend_criminal, uuw_arrests
-
     Ordinal (2 — age-range mapped to 0-6):
         age_at_arrest_ord, age_curr_ord
 
@@ -268,6 +264,15 @@ def load_ssl(data_path: Optional[str] = None, test_size: float = 0.2,
     Binary demographic (2):
         sex_male  (M=1, else=0)
         latest_year_recent  (LATEST DATE >= 2014)
+
+    NOTE: The 7 ``PREDICTOR RAT *`` columns (victim_shooting, victim_battery,
+    arrests_violent, gang_affiliation, narcotic_arrests, trend_criminal,
+    uuw_arrests) are **excluded** because they are the sub-scores that the
+    CPD algorithm sums to compute SSL SCORE.  Including them as features
+    when predicting ``SSL SCORE >= threshold`` constitutes structural data
+    leakage: the target is a near-deterministic function of those inputs.
+    Only raw individual characteristics independent of the CPD formula
+    are used.
 
     Target
     ------
@@ -334,61 +339,71 @@ def load_ssl(data_path: Optional[str] = None, test_size: float = 0.2,
         df = pd.DataFrame.from_records(records)
         if verbose:
             print(f"Downloaded {len(df):,} records from Socrata")
-        # Socrata returns strings — cast numeric columns
+        # Socrata returns strings — cast numeric columns where possible
         for col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors='ignore')
+            try:
+                df[col] = pd.to_numeric(df[col])
+            except (ValueError, TypeError):
+                pass
 
     if verbose:
         print(f"SSL raw: {len(df):,} rows, {len(df.columns)} columns")
 
-    # ── 1. Numeric predictor ratings (already int/float) ────────────────
-    numeric_predictors = [
-        'PREDICTOR RAT VICTIM SHOOTING INCIDENTS',
-        'PREDICTOR RAT VICTIM BATTERY OR ASSAULT',
-        'PREDICTOR RAT ARRESTS VIOLENT OFFENSES',
-        'PREDICTOR RAT GANG AFFILIATION',
-        'PREDICTOR RAT NARCOTIC ARRESTS',
-        'PREDICTOR RAT TREND IN CRIMINAL ACTIVITY',
-        'PREDICTOR RAT UUW ARRESTS',
-    ]
+    # --- normalise column names to lowercase_underscore -------------------
+    # Socrata API returns lowercase_underscore names; local CSV uses
+    # UPPERCASE WITH SPACES.  Normalise to a single convention.
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 
-    # ── 2. Ordinal age ranges → 0-6 ────────────────────────────────────
+    # NOTE: The 7 'predictor_rat_*' columns are excluded because they are the
+    # sub-scores that the CPD algorithm sums to compute ssl_score. Including
+    # them as features when predicting ssl_score >= threshold constitutes
+    # structural data leakage: the target is a near-deterministic function of
+    # those inputs.  Only raw individual characteristics independent of the
+    # CPD formula are used.
+
+    # ── 1. Ordinal age ranges → 0-6 ────────────────────────────────────
     df['age_at_arrest_ord'] = (
-        df['PREDICTOR RAT AGE AT LATEST ARREST']
-        .str.strip().str.lower()
+        df['predictor_rat_age_at_latest_arrest']
+        .astype(str).str.strip().str.lower()
         .map(_AGE_RANGE_MAP)
     )
     df['age_curr_ord'] = (
-        df['AGE CURR']
+        df['age_curr']
         .astype(str).str.strip().str.lower()
         .map(_AGE_RANGE_MAP)
     )
 
-    # ── 3. Binary flags (Y/N → 1/0) ────────────────────────────────────
-    for flag_col in ['WEAPON I', 'DRUG I', 'CPD ARREST I']:
-        df[flag_col] = (df[flag_col].str.strip().str.upper() == 'Y').astype(int)
+    # ── 2. Binary flags (Y/N → 1/0) ────────────────────────────────────
+    for flag_col in ['weapon_i', 'drug_i', 'cpd_arrest_i']:
+        df[flag_col] = (
+            df[flag_col].astype(str).str.strip().str.upper() == 'Y'
+        ).astype(int)
 
-    # ── 4. Sex → binary ────────────────────────────────────────────────
-    df['sex_male'] = (df['SEX CODE CD'].str.strip().str.upper() == 'M').astype(int)
+    # ── 3. Sex → binary ────────────────────────────────────────────────
+    df['sex_male'] = (
+        df['sex_code_cd'].astype(str).str.strip().str.upper() == 'M'
+    ).astype(int)
 
-    # ── 5. Temporal: is latest arrest recent? ──────────────────────────
-    df['latest_year_recent'] = (df['LATEST DATE'] >= 2014).astype(int)
+    # ── 4. Temporal: is latest arrest recent? ──────────────────────────
+    _latest = df['latest_date']
+    if _latest.dtype == 'object':
+        _latest = pd.to_datetime(_latest, errors='coerce').dt.year
+    df['latest_year_recent'] = (_latest >= 2014).astype(int)
 
-    # ── assemble feature matrix ────────────────────────────────────────
-    feature_cols = (
-        numeric_predictors
-        + ['age_at_arrest_ord', 'age_curr_ord']
-        + ['WEAPON I', 'DRUG I', 'CPD ARREST I']
-        + ['sex_male', 'latest_year_recent']
-    )
+    # ── assemble feature matrix (7 raw individual characteristics) ─────
+    feature_cols = [
+        'age_at_arrest_ord', 'age_curr_ord',
+        'weapon_i', 'drug_i', 'cpd_arrest_i',
+        'sex_male', 'latest_year_recent',
+    ]
     X = df[feature_cols].copy()
 
     # ── target ─────────────────────────────────────────────────────────
-    y = (df['SSL SCORE'] >= score_threshold).astype(int)
+    y = (df['ssl_score'] >= score_threshold).astype(int)
 
     # ── protected attribute: race ──────────────────────────────────────
     protected = (
-        df['RACE CODE CD'].str.strip().str.upper() == 'BLK'
+        df['race_code_cd'].astype(str).str.strip().str.upper() == 'BLK'
     ).astype(int)
 
     # ── drop rows with any NaN left ────────────────────────────────────
@@ -404,16 +419,9 @@ def load_ssl(data_path: Optional[str] = None, test_size: float = 0.2,
 
     # ── rename columns to short snake_case for downstream convenience ──
     rename_map = {
-        'PREDICTOR RAT VICTIM SHOOTING INCIDENTS': 'victim_shooting',
-        'PREDICTOR RAT VICTIM BATTERY OR ASSAULT': 'victim_battery',
-        'PREDICTOR RAT ARRESTS VIOLENT OFFENSES':  'arrests_violent',
-        'PREDICTOR RAT GANG AFFILIATION':          'gang_affiliation',
-        'PREDICTOR RAT NARCOTIC ARRESTS':          'narcotic_arrests',
-        'PREDICTOR RAT TREND IN CRIMINAL ACTIVITY':'trend_criminal',
-        'PREDICTOR RAT UUW ARRESTS':               'uuw_arrests',
-        'WEAPON I':      'weapon_flag',
-        'DRUG I':        'drug_flag',
-        'CPD ARREST I':  'cpd_arrest_flag',
+        'weapon_i':      'weapon_flag',
+        'drug_i':        'drug_flag',
+        'cpd_arrest_i':  'cpd_arrest_flag',
     }
     X = X.rename(columns=rename_map)
     feature_names = X.columns.tolist()
